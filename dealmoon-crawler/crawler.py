@@ -15,6 +15,7 @@ import unicodedata
 import pickle
 import multiprocessing
 import html.parser
+import os.path
 
 
 ## Mostly adapted from:
@@ -120,10 +121,42 @@ def scrape(retailer, url, domain, save_every=15):
             'p', attrs={"class": 'brief'}
         )
 
-        print(link_elements)
+        # 20 records on each website
+        result = []
+        for element in link_elements:
+            result.append(element.text.strip().replace('              ',' '))
+        #print(result)
+
+        # today: apr. 23
+        date_elements = output.find_all(
+            'span', attrs={"class": 'ib published-date'}
+        )
+
+        date = []
+        for element in date_elements:
+            date.append(element.text.strip())
+        #print(date[1])
+
+        final = pd.DataFrame({'date': date, 'information': result})
+
+        filename = store + "-promotion.xlsx"
+        if not os.path.exists(filename):
+            # file doesn't exist
+            final.to_excel(filename, index=None)
+        else:
+            # file exists
+            current = pd.read_excel(filename)
+            final = pd.concat([current, final], axis=0)
+            final.to_excel(filename, index=None)
+
 
 if __name__ == '__main__':
     # for bestbuy from dealmoon
-    scrape(retailer="bestbuy", url='https://www.dealmoon.com/en/stores/best-buy', domain="www.dealmoon.com", save_every=15)
-
-
+    store = 'nordstrom'
+    for i in range(1,101,1):
+        if i == 1:
+            url = 'https://www.dealmoon.com/en/stores/'+store
+            scrape(retailer=store, url=url, domain="www.dealmoon.com", save_every=15)
+        else:
+            url = 'https://www.dealmoon.com/en/stores/'+store + '?p='+str(i)
+            scrape(retailer=store, url=url, domain="www.dealmoon.com", save_every=15)
