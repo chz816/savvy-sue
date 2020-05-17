@@ -3,11 +3,12 @@ import html2text
 import argparse
 import json
 import datetime
-
+import glob, os
+import re
+import pandas as pd
+import shutil
 
 class Emlx(object):
-    """An apple proprietary emlx message"""
-
     def __init__(self):
         super(Emlx, self).__init__()
         self.filename = None
@@ -25,7 +26,7 @@ class Emlx(object):
         * an email object
         * the plist structure as a dict data structure
         """
-        with open(self.filename, "r") as f:
+        with open(self.filename, "r", errors='ignore') as f:
             # extract the bytecount
             content = f.readlines()
 
@@ -92,37 +93,41 @@ class Emlx(object):
         clean["html2txt"] = self.html2txt
         return json.dumps(clean)
 
+# path for the data file
+os.chdir("/Users/rachelzheng/Documents/GitHub/savvy-sue/data/okdata")
 
-if __name__ == '__main__':
+# brand - new dict
+#brand = ["Men's Wearhouse", "American Eagle", "L.L.Bean", "Express", "DICK's" "Hillister"]
+brand = {}
 
-    parser = argparse.ArgumentParser(description='Parser for emlx mail files')
-    parser.add_argument('file', nargs='+',
-                        help='Emlx mail file')
-    parser.add_argument('--html', help="Get html content", action="store_true", default=False)
-    parser.add_argument('--txt', help="Get txt content", action="store_true", default=False)
-    parser.add_argument('--html2txt', help="Get html content in text format", action="store_true", default=False)
-    parser.add_argument('--json', help="Get all in json", action="store_true", default=False)
-    parser.add_argument('--head', help="Get head summary", action="store_true", default=False)
-
-    args = parser.parse_args()
-    if args.file:
-        msg = Emlx()
-        msg.filename = args.file[0]
-        message = msg.parse()
-
-        if args.html: print(msg.get_html())
-        if args.txt: print(msg.get_txt())
-        if args.html2txt: print(msg.get_html2txt())
-        if args.json: print(msg.json())
-        if args.head: print(msg.print_header())
-
-        if args.html or args.txt or args.html2txt or args.json or args.head:
-            pass
-        else:
-            msg.print_header()
-            msg.print_txt()
-            msg.print_html()
-            msg.print_html2txt()
-
+# look for all files ending with "emlx" extension
+for file in glob.glob("*.emlx"):
+    print(file)
+    msg = Emlx()
+    msg.filename = file
+    message = msg.parse()
+    #txt_info = msg.get_txt()
+    info = msg.get_html()
+    title_data = re.search('<title>(.*)</title>', info)
+    title = title_data.group(1)
+    print(title)
+    if title not in brand.keys():
+        brand[title] = 1
     else:
-        parser.print_help()
+        brand[title] += 1
+    print("finish")
+    #file_orginal_path = "/Users/rachelzheng/Documents/GitHub/savvy-sue/data/" + str(file)
+    #file_new_path = "/Users/rachelzheng/Documents/GitHub/savvy-sue/data/okdata/" + str(file)
+    #shutil.move(file_orginal_path, file_new_path)
+
+    # look for store information
+    #if not any(x in txt_info for x in brand):
+    #    print("not found")
+        #print(msg.get_txt())
+    #    break
+
+print(brand)
+#print("final result")
+
+brand = pd.DataFrame(brand.items())
+brand.to_excel("brand.xlsx", index=None)
