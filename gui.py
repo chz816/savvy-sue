@@ -126,20 +126,20 @@ if __name__ == '__main__':
     # get the week information
     Label(master, text="What is your expected purchase date?").grid(row=25, column=0, sticky=W)
 
+    Label(master, text="Month:").grid(row=26, column=0, sticky=W)
     number = StringVar()
     numberChosen = ttk.Combobox(master, textvariable=number)
     numberChosen['value'] = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
-    numberChosen.grid(row=25, column=1, sticky=W)
+    numberChosen.grid(row=26, column=1, sticky=W)
     numberChosen.current(0)
 
+    Label(master, text="Week:").grid(row=26, column=2, sticky=W)
     number2 = StringVar()
     numberChosen2 = ttk.Combobox(master, textvariable=number2)
     numberChosen2['value'] = (1, 2, 3, 4)
-    numberChosen2.grid(row=25, column=2, sticky=W)
+    numberChosen2.grid(row=26, column=3, sticky=W)
     numberChosen2.current(0)
 
-
     Button(master, text='Show', command=logistic).grid(row=27, column=1, sticky=W, pady=4)
-    Label(master, text="Probability that the price will drop:").grid(row=28, column=1, sticky=W)
-    Button(master, text='Quit', command=master.quit).grid(row=29, column=1, sticky=W, pady=4)
+    Button(master, text='Quit', command=master.quit).grid(row=27, column=2, sticky=W, pady=4)
     mainloop()
