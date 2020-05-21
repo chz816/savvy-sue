@@ -47,7 +47,7 @@ if __name__ == '__main__':
     master = Tk()
     master.title("FSAN 850 Project: Savvy Sue")
     # title for the whole project
-    Label(master, text="Savvy Sue: What is the probability that on sale?").grid(row=0, column=1, sticky=W)
+    Label(master, text="Savvy Sue: How likely will there be a sale on ...?").grid(row=0, column=1, sticky=W)
 
     Label(master, text="Store Choice:").grid(row=1, sticky=W)
     var1 = IntVar()
