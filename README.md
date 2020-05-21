@@ -35,6 +35,12 @@ $ python3 gui.py
 
 We collect our data from Dealmoon.com. As one of the biggest online shopping guide websites, it stores the expired deals. We build our crawler to collect the all available promotional information from our data source, and the detailer crawler is put in ```data-collection```.
 
+To run the crawler:
+
+``````bash
+$ python3 crawler.py
+``````
+
 
 
 ## Data Cleaning
