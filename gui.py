@@ -41,7 +41,8 @@ def logistic():
         # add the week
         b += 0.001371503 * date
         p = math.exp(b)/(math.exp(b)+1)
-        print(f"The probability that on sale is {p}")
+        p = round(p*100,2)
+        print(f"Our numbers suggest a promotion with {p}% probability.")
 
 if __name__ == '__main__':
     master = Tk()
