@@ -133,7 +133,7 @@ def scrape(retailer, url, domain, save_every=15):
 
         final = pd.DataFrame({'date': date, 'information': result})
 
-        filename = store + "-promotion.xlsx"
+        filename = "data/"+store + "-promotion.xlsx"
         if not os.path.exists(filename):
             # file doesn't exist
             final.to_excel(filename, index=None)
@@ -145,7 +145,7 @@ def scrape(retailer, url, domain, save_every=15):
 
 
 if __name__ == '__main__':
-    # for bestbuy from dealmoon
+    # for nordstrom from dealmoon
     store = 'nordstrom'
     for i in range(1,101,1):
         if i == 1:
