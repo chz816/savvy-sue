@@ -12,7 +12,7 @@ library(ggplot2)
 library(ggthemes)
 
 ## Compile store data and display distribution of promotions
-files <- list.files(paste0(getwd(),"/Data"), pattern = "_Data.xlsx", full.names = TRUE)
+files <- list.files(paste0(getwd(),"/data"), pattern = "_Data.xlsx", full.names = TRUE)
 
 ## Our Master data set 
 data_master = as.data.frame(matrix(nrow = 0, ncol = 10))
@@ -43,7 +43,7 @@ pos_data_points_product <- data_master %>%
 pos_data_points_product %>%
   ggplot()+
   geom_bar(aes(x=Week,y=ObservedPromotions, fill = Product),stat = 'identity', position = 'dodge') +
-  facet_wrap(pos_data_points_week$retailer) +
+  facet_wrap(pos_data_points_product$retailer) +
   scale_y_continuous(name = "Observed Promotions by Product") +
   theme(axis.title.y = element_text(face = "bold", size = 18),
         axis.title.x = element_text(face = "bold", size = 18),
@@ -65,7 +65,7 @@ pos_data_points <- data_master %>%
 pos_data_points %>%
   ggplot()+
   geom_bar(aes(x=year,y=ObservedPromotions, fill = Product), stat = 'identity', position = 'dodge')+
-  facet_wrap(pos_data_points_week$retailer) +
+  facet_wrap(pos_data_points$retailer) +
   scale_y_continuous(name = "Observed Promotions by Product") +
   theme(axis.title.y = element_text(face = "bold", size = 18),
         axis.title.x = element_text(face = "bold", size = 18),
