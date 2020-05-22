@@ -79,3 +79,10 @@ $ R CMD BATCH distribution_plots.R
 ## Modeling
 
 We build the logistic regression to predict the likelihood of future promotion. The coefficients from logistic regression is implement in the GUI, and the output is the probability for possible promotion.
+
+To train and test the model:
+
+```bash
+$ python model/Model.py
+```
+
