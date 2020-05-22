@@ -10,7 +10,7 @@ import numpy as np
 # reading csv file from url 
 
 def data_clean():
-  data =pd.read_excel (r'C:\Python37\Scripts\dealmoon-data.xlsx')
+  data =pd.read_excel (r'data/dealmoon-data.xlsx')
 
   # Find free shipping and exclusions
   data["Free Shipping"] = data["information"].str.contains(pat = 'Free shipping', regex = True) 
@@ -168,34 +168,34 @@ def data_clean():
           result["Product"]=y
           result["retailer"]=x
           result["Retailer Style"]=J
-          result.to_excel( x+y+'.xlsx' )
+          result.to_excel('data-cleaning/'+x+y+'.xlsx' )
 
 
   # In[9]:
 
 
   for x in output:
-      dh =pd.read_excel(x+P[0]+'.xlsx')
+      dh =pd.read_excel('data-cleaning/'+x+P[0]+'.xlsx')
       for y in P[2:16]:
-          data =pd.read_excel(x+y+'.xlsx')
+          data =pd.read_excel('data-cleaning/'+x+y+'.xlsx')
           dh=dh.append(data, ignore_index=True)
       dh["code"].fillna(" ", inplace = True) 
       dh["Free Shipping"].fillna(0, inplace = True) 
       dh["Minimum Free Shipping"].fillna(0, inplace = True) 
       dh["promotion"].fillna(0, inplace = True) 
       dh.drop(columns =["Unnamed: 0"], inplace = True)
-      dh.to_excel( x+'_Data.xlsx' )
+      dh.to_excel('data/'+x+'_Data.xlsx' )
 
 
   # In[10]:
 
 
   import numpy as np
-  data =pd.read_excel(output[0]+'_Data.xlsx')
+  data =pd.read_excel('data/'+output[0]+'_Data.xlsx')
   data.sort_values(['year', 'Week'], ascending=[False, False])
   Training , Testing = np.split(data, [int(.75*len(data))])
   for x in output[1:len(output)]:
-      data=pd.read_excel(x+'_Data.xlsx') 
+      data=pd.read_excel('data/'+x+'_Data.xlsx') 
       data.sort_values(['year', 'Week'], ascending=[False, False])
       Training2 , Testing2 = np.split(data, [int(.75*len(data))])
       Testing=Testing.append(Testing2, ignore_index=True)
@@ -208,8 +208,8 @@ def data_clean():
 
   Training.drop(columns =["information","day","Unnamed: 0"], inplace = True) 
   Testing.drop(columns =["information","day","Unnamed: 0"], inplace = True) 
-  Training.to_excel('Training_complete.xlsx' )
-  Testing.to_excel('Testing_complete.xlsx' )
+  Training.to_excel('model/'+'Training_complete.xlsx' )
+  Testing.to_excel('model/'+'Testing_complete.xlsx' )
   Training.drop(columns =["Exclusions Apply","Free Shipping","code","Retailer Style","Minimum Free Shipping"], inplace = True) 
   Testing.drop(columns =["Exclusions Apply","Free Shipping","code","Retailer Style","Minimum Free Shipping"], inplace = True) 
 
@@ -219,8 +219,8 @@ def data_clean():
 
   Training = pd.get_dummies(Training)
   Testing = pd.get_dummies(Testing)
-  Training.to_excel('Training.xlsx' )
-  Testing.to_excel('Testing.xlsx' )
+  Training.to_excel('model/'+'Training.xlsx' )
+  Testing.to_excel('model/'+'Testing.xlsx' )
 
 if __name__ == "__main__":
   data_clean()
