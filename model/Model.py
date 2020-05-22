@@ -11,7 +11,7 @@ from sklearn.metrics import recall_score
 from sklearn.metrics import confusion_matrix
 
 def model():
-    training =pd.read_excel('Model/Training.xlsx')
+    training =pd.read_excel('model/Training.xlsx')
     training.drop(columns =['year'], inplace = True)
 
 
@@ -39,13 +39,13 @@ def model():
     Model= pd.DataFrame(clf.coef_,columns=[r])
     Model["Interception"]=z
     Model
-    Model.to_excel('Model/Coeficients.xlsx' )
+    Model.to_excel('model/Coeficients.xlsx' )
 
 
     # In[8]:
 
 
-    test =pd.read_excel('Model/Testing.xlsx')
+    test =pd.read_excel('model/Testing.xlsx')
     test.drop(columns =['year','Unnamed: 0'], inplace = True)
 
     y1=test['Promotion']
@@ -71,7 +71,7 @@ def model():
     E.append(Trainig)
     E.append(Test)
     Errors= pd.DataFrame(E,columns=["error"],index=["Training","Testing"])
-    Errors.to_excel('Model/Errors.xlsx' )
+    Errors.to_excel('model/Errors.xlsx' )
 
 
     # In[30]:
@@ -93,7 +93,7 @@ def model():
     Va.append(f1_t)
 
     Stats= pd.DataFrame(Va,columns=["Value"],index=["Recall", "F1" ,"Recall Test", "F1 Test"])
-    Stats.to_excel('Model/Stats.xlsx' )
+    Stats.to_excel('model/Stats.xlsx' )
     
 if __name__ == "__main__":
     model()
