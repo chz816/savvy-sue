@@ -3,7 +3,7 @@
 ### Author: Jared Sharpe
 ### Plots are saved to .png files.
 
-install.packages(c('dplyr','stringr','readxl','ggplot2','ggthemes'),dependencies = F)
+install.packages(c('dplyr','stringr','readxl','ggplot2','ggthemes'),dependencies = F, repos = "http://cran.us.r-project.org" )
 
 library(dplyr)
 library(stringr)
