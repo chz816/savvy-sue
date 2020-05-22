@@ -12,7 +12,7 @@ library(ggplot2)
 library(ggthemes)
 
 ## Compile store data and display distribution of promotions
-files <- list.files(paste0(getwd(),"/Stores Data"), pattern = "_Data.xlsx", full.names = TRUE)
+files <- list.files(paste0(getwd(),"/Data"), pattern = "_Data.xlsx", full.names = TRUE)
 
 ## Our Master data set 
 data_master = as.data.frame(matrix(nrow = 0, ncol = 10))
