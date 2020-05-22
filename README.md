@@ -10,7 +10,8 @@ Clone the repo, go to the repo folder, setup the virtual environment, and instal
 ```bash
 $ python3.7 -m venv venv
 $ source venv/bin/activate
-$ pip install -r savvy-sue/requirements.txt
+$ cd savvy-sue
+$ pip install -r requirements.txt
 ```
 
 
@@ -26,7 +27,7 @@ Our UI is developed based on ```tkinter```. There are three inputs needed for ou
 - **Date**: it refers to the expected purchased date. User can select the date in the combo box in the bottom.
 
 ```bash
-$ python savvy-sue/gui.py
+$ python gui.py
 ```
 
 
@@ -38,7 +39,7 @@ We collect our data from Dealmoon.com. As one of the biggest online shopping gui
 To run the crawler:
 
 ```bash
-$ python savvy-sue/data-collection/dealmoon-crawler/crawler.py
+$ python data-collection/dealmoon-crawler/crawler.py
 ```
 
 
@@ -49,6 +50,12 @@ The collected data ```dealmoon-data.xlsx``` is put in the ```data``` folder.
 ## Data Cleaning
 
 We clean the data for modeling purpose. We classify the promotional information into several product categories. To make this, we pre-define a dictionary with categories and related keywords. Then we match the promotional information with the keywords to find the related categories. The detailed code is put in ```data-cleaning```.
+
+To run the cleaning:
+
+```bash
+$ python data-cleaning/`Data Cleaning.py`
+```
 
 
 
