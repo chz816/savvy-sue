@@ -9,16 +9,18 @@ import numpy as np
 from sklearn.metrics import f1_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import confusion_matrix
+from sklearn.linear_model import LogisticRegression
 
 def model():
     training =pd.read_excel('model/Training.xlsx')
-    training.drop(columns =['year'], inplace = True)
+    try:
+        training.drop(columns =['year'], inplace = True)
+    except:
+        pass
 
 
     # In[2]:
-
-
-    from sklearn.linear_model import LogisticRegression
+    
     y=training ['Promotion']
     X=training 
     X.drop(columns =['Promotion'], inplace = True)
@@ -46,7 +48,10 @@ def model():
 
 
     test =pd.read_excel('model/Testing.xlsx')
-    test.drop(columns =['year','Unnamed: 0'], inplace = True)
+    try:
+        test.drop(columns =['year','Unnamed: 0'], inplace = True)
+    except:
+        pass
 
     y1=test['Promotion']
     X1=test
