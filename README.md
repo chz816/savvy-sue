@@ -19,7 +19,7 @@ $ pip install -r requirements.txt
 
 We design a user interface for our search system. Once the user logs into the system, they can select the store, product, and the expected purchased date to see our prediction.
 
-There are three inputs needed for our model:
+Our UI is developed based on ```tkinter```. There are three inputs needed for our model:
 
 - **Store**: this refers to the 22 available stores including different types of retailers. User can select the store in the left checklist.
 - **Item**: this refers to the product category. User can select the product category in the right checklist.
@@ -41,6 +41,9 @@ To run the crawler:
 $ python3 crawler.py
 ``````
 
+The collected data ```dealmoon-data.xlsx``` is put in the ```data``` folder.
+
+
 
 ## Data Cleaning
 
@@ -55,6 +58,7 @@ After running the Data Collection and Data Cleaning, the plots included in the r
 ``````bash
 $ R CMD BATCH distribution_plots.R
 ``````
+
 
 
 ## Modeling
