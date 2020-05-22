@@ -5,12 +5,19 @@ This repo is for FSAN 850/CPEG 646 Project at the University of Delaware, from G
 
 ## Local Setup
 
-Clone the repo, go to the repo folder, setup the virtual environment, and install the required packages:
+Clone the repo, go to the repo folder:
+
+```bash
+$ cd savvy-sue
+```
+
+
+
+Then setup the virtual environment, and install the required packages:
 
 ```bash
 $ python3.7 -m venv venv
 $ source venv/bin/activate
-$ cd savvy-sue
 $ pip install -r requirements.txt
 ```
 
@@ -54,7 +61,7 @@ We clean the data for modeling purpose. We classify the promotional information 
 To run the cleaning:
 
 ```bash
-$ python data-cleaning/`Data Cleaning.py`
+$ python data-cleaning/DataCleaning.py
 ```
 
 
