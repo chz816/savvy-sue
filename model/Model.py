@@ -5,6 +5,10 @@
 
 
 import pandas as pd
+import numpy as np
+from sklearn.metrics import f1_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import confusion_matrix
 
 def model():
     training =pd.read_excel('Model/Training.xlsx')
@@ -24,7 +28,7 @@ def model():
     # In[9]:
 
 
-    import numpy as np
+    
     r=[]
     z=clf.intercept_ 
 
@@ -57,9 +61,6 @@ def model():
 
     # In[29]:
 
-
-    import numpy as np
-
     X1=X1.reindex(columns=r1) 
     for x in r1:
         X1[x].fillna(0,inplace=True)
@@ -74,11 +75,6 @@ def model():
 
 
     # In[30]:
-
-
-    from sklearn.metrics import f1_score
-    from sklearn.metrics import recall_score
-    from sklearn.metrics import confusion_matrix
 
     y_P=clf.predict(X) 
     f1=f1_score(y, y_P, average='macro')
@@ -99,6 +95,6 @@ def model():
     Stats= pd.DataFrame(Va,columns=["Value"],index=["Recall", "F1" ,"Recall Test", "F1 Test"])
     Stats.to_excel('Model/Stats.xlsx' )
     
-  if __name__ == "__main__":
+if __name__ == "__main__":
     model()
 
