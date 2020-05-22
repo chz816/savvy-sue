@@ -3,3 +3,8 @@ requests==2.23.0
 datetime
 numpy
 pandas
+html.parser
+lxml
+openpyxl
+wheel
+xlrd

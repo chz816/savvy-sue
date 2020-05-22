@@ -1,19 +1,13 @@
 from bs4 import BeautifulSoup
+
+
 from datetime import datetime as dt2
-import datetime as dt1
-import re
 import urllib.request
 import pandas as pd
 import requests.exceptions
 from urllib.parse import urlsplit
-from urllib.parse import urlparse
 from collections import deque
-import numpy as np
-import time
 import os
-import unicodedata
-import pickle
-import multiprocessing
 import html.parser
 import os.path
 
